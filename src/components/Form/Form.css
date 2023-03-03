@@ -1,0 +1,34 @@
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.input {
+  height: 40px;
+  padding: 0 20px;
+  border: 1px solid #ccc;
+  min-width: 80%;
+  font-size: 20px;
+  border-radius: 5px 0 0 5px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 0 5px 5px 0;
+  background-color: #ff6347;
+  transition: opacity .2s;
+}
+
+.button:hover {
+  opacity: .8;
+
+}
