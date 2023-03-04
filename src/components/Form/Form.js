@@ -24,8 +24,22 @@ export default class Form extends Component {
 
     if (!newTask || tasks.indexOf(newTask) !== -1) return;
 
-    tasks.push(newTask);
-    this.setState({ tasks });
+    const newTasks = [...tasks, newTask];
+
+    this.setState({
+      tasks: newTasks,
+    });
+  };
+
+  handleDelete = (event, index) => {
+    const { tasks } = this.state;
+    const newTasks = [...tasks];
+
+    newTasks.splice(index, 1);
+
+    this.setState({
+      tasks: newTasks,
+    });
   };
 
   render() {
@@ -46,12 +60,15 @@ export default class Form extends Component {
         </form>
 
         <ul className="tasks">
-          {tasks.map((task) => (
+          {tasks.map((task, index) => (
             <li key={task}>
               {task}
               <div>
-                <FaEdit className="edit" />
-                <FaTrashAlt className="delete" />
+                <FaEdit className="edit" onClick={this.handleEdit} />
+                <FaTrashAlt
+                  className="delete"
+                  onClick={(event) => this.handleDelete(event, index)}
+                />
               </div>
             </li>
           ))}
