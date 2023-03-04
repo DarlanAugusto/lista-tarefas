@@ -15,12 +15,25 @@ export default class Form extends Component {
     });
   };
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+
+    const { tasks } = this.state;
+    let { newTask } = this.state;
+    newTask = newTask.trim();
+
+    if (!newTask || tasks.indexOf(newTask) !== -1) return;
+
+    tasks.push(newTask);
+    this.setState({ tasks });
+  };
+
   render() {
     const { newTask, tasks } = this.state;
 
     return (
       <div>
-        <form action="#" className="form">
+        <form action="#" className="form" onSubmit={this.handleSubmit}>
           <input
             type="text"
             className="input"
