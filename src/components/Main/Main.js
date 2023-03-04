@@ -9,7 +9,7 @@ export default class Main extends Component {
   render() {
     return (
       <div className="main">
-        <h1>List of Tasks</h1>
+        <h1>To-do List</h1>
         <Form />
       </div>
     );

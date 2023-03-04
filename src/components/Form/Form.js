@@ -6,9 +6,25 @@ import './Form.css';
 export default class Form extends Component {
   state = {
     newTask: '',
-    tasks: ['Faculdade', 'Trabalhar', 'Academia', 'Estudar'],
+    tasks: [],
     index: -1,
   };
+
+  componentDidMount() {
+    const tasks = JSON.parse(localStorage.getItem('tasks'));
+
+    if (!tasks) return;
+
+    this.setState({ tasks });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { tasks } = this.state;
+
+    if (prevState.tasks !== tasks) {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    }
+  }
 
   handleInputChange = (event) => {
     this.setState({
