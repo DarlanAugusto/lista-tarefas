@@ -1,9 +1,12 @@
+/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
-import { FaPlus, FaEdit, FaTrashAlt } from 'react-icons/fa';
 
-import './Form.css';
+import Form from '../Form';
+import Task from '../Task';
 
-export default class Form extends Component {
+import './Main.css';
+
+export default class Main extends Component {
   state = {
     newTask: '',
     tasks: [],
@@ -85,38 +88,19 @@ export default class Form extends Component {
 
   render() {
     const { newTask, tasks } = this.state;
-
     return (
-      <div>
-        <form action="#" className="form" onSubmit={this.handleSubmit}>
-          <input
-            type="text"
-            className="input"
-            onChange={this.handleInputChange}
-            value={newTask}
-          />
-          <button className="button" type="submit">
-            <FaPlus />
-          </button>
-        </form>
-
-        <ul className="tasks">
-          {tasks.map((task, index) => (
-            <li key={task}>
-              {task}
-              <div>
-                <FaEdit
-                  className="edit"
-                  onClick={(event) => this.handleEdit(event, index)}
-                />
-                <FaTrashAlt
-                  className="delete"
-                  onClick={(event) => this.handleDelete(event, index)}
-                />
-              </div>
-            </li>
-          ))}
-        </ul>
+      <div className="main">
+        <h1>To-do List</h1>
+        <Form
+          newTask={newTask}
+          handleSubmit={this.handleSubmit}
+          handleInputChange={this.handleInputChange}
+        />
+        <Task
+          tasks={tasks}
+          handleEdit={this.handleEdit}
+          handleDelete={this.handleDelete}
+        />
       </div>
     );
   }
