@@ -7,6 +7,7 @@ export default class Form extends Component {
   state = {
     newTask: '',
     tasks: ['Faculdade', 'Trabalhar', 'Academia', 'Estudar'],
+    index: -1,
   };
 
   handleInputChange = (event) => {
@@ -18,16 +19,40 @@ export default class Form extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
 
-    const { tasks } = this.state;
+    const { tasks, index } = this.state;
+    const newTasks = [...tasks];
     let { newTask } = this.state;
     newTask = newTask.trim();
 
-    if (!newTask || tasks.indexOf(newTask) !== -1) return;
+    if (!newTask) return;
 
-    const newTasks = [...tasks, newTask];
+    if (index !== -1) {
+      newTasks[index] = newTask;
+
+      this.setState({
+        tasks: newTasks,
+        newTask: '',
+        index: -1,
+      });
+
+      return;
+    }
+
+    if (tasks.indexOf(newTask) !== -1) return;
 
     this.setState({
-      tasks: newTasks,
+      tasks: [...newTasks, newTask],
+      newTask: '',
+      index: -1,
+    });
+  };
+
+  handleEdit = (event, index) => {
+    const { tasks } = this.state;
+
+    this.setState({
+      newTask: tasks[index],
+      index,
     });
   };
 
@@ -64,7 +89,10 @@ export default class Form extends Component {
             <li key={task}>
               {task}
               <div>
-                <FaEdit className="edit" onClick={this.handleEdit} />
+                <FaEdit
+                  className="edit"
+                  onClick={(event) => this.handleEdit(event, index)}
+                />
                 <FaTrashAlt
                   className="delete"
                   onClick={(event) => this.handleDelete(event, index)}
