@@ -24,11 +24,51 @@
   color: #fff;
   font-size: 20px;
   border-radius: 0 5px 5px 0;
-  background-color: #ff6347;
+  background-color: #228b22;
   transition: opacity .2s;
 }
 
 .button:hover {
   opacity: .8;
 
+}
+
+.tasks {
+  max-width: 80%;
+  margin: 20px auto;
+}
+
+.tasks li {
+  display: flex;
+  padding: 5px;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color .2s;
+  border-radius: 5px;
+}
+
+.tasks li:hover {
+  background-color: #4682b4;
+  color: #fff;
+  font-weight: 700;
+}
+.tasks li:hover * {
+  color: #fff;
+}
+
+.tasks li div {
+  display: flex;
+  gap: 5px;
+}
+
+.tasks li div * {
+  cursor: pointer;
+}
+
+.edit {
+  color: #4682b4;
+}
+
+.delete {
+  color: #b04633;
 }
